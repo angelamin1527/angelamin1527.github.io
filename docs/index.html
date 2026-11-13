@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta name="description" content="Python과 SQL로 데이터를 배우고 있는 주니어 데이터 분석가 Angela의 소개 페이지입니다.">
+  <title>Angela — Data, in progress</title>
+  <style>
+    :root{--ink:#202321;--muted:#727873;--paper:#f7f6f2;--white:#fff;--orange:#f16b4f;--yellow:#f3c85b;--green:#8cae91;--blue:#8bb9c8;--pink:#e9a9a0}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;letter-spacing:-.035em}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1080px,calc(100% - 48px));margin:auto}
+    header{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-size:19px;font-weight:800;letter-spacing:-.06em}
+    nav{display:flex;gap:25px;color:#656b66;font-size:13px}
+    .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:750;color:#737a73}
+    .hero{min-height:690px;display:flex;flex-direction:column;justify-content:center;padding:85px 0 110px;position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;width:390px;height:390px;border-radius:50%;right:3%;top:18%;background:radial-gradient(circle at 35% 35%,#f5d77f 0 20%,#ef9a76 58%,#e77d67 100%);filter:saturate(.9);z-index:-1}
+    h1{font-size:clamp(64px,11vw,132px);line-height:.91;letter-spacing:-.095em;margin:25px 0;max-width:760px;font-weight:800}
+    h1 span{color:var(--orange)}
+    .hero-copy{font-size:clamp(17px,2vw,22px);line-height:1.65;color:#555d57;max-width:510px}
+    .scroll-note{margin-top:60px;font-size:12px;color:#858b85;display:flex;align-items:center;gap:12px}
+    .scroll-note:before{content:"";width:36px;height:1px;background:#aeb4ad}
+    section{padding:125px 0}
+    .statement{background:#222824;color:#f7f6f2;border-radius:28px;padding:clamp(36px,7vw,86px);overflow:hidden;position:relative}
+    .statement .eyebrow{color:#b5c1b6}
+    .statement h2{font-size:clamp(38px,6vw,76px);line-height:1.12;letter-spacing:-.07em;max-width:800px;margin:28px 0}
+    .statement h2 em{font-style:normal;color:var(--yellow)}
+    .statement p{color:#c5ccc5;max-width:550px;line-height:1.8;font-size:16px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:42px}
+    h2{font-size:clamp(38px,5.5vw,66px);line-height:1.04;letter-spacing:-.075em;margin:14px 0 0}
+    .section-head p{max-width:330px;color:var(--muted);line-height:1.7;margin:0;font-size:14px}
+    .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .skill{min-height:280px;padding:34px;border-radius:22px;display:flex;flex-direction:column;justify-content:space-between}
+    .skill:nth-child(1){background:#f1c65f}.skill:nth-child(2){background:#9bbda0}
+    .skill .symbol{font-size:34px;font-weight:800;letter-spacing:-.08em}
+    .skill h3{font-size:31px;letter-spacing:-.06em;margin:0 0 9px}
+    .skill p{max-width:360px;line-height:1.7;margin:0;color:#414941;font-size:14px}
+    .journey{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+    .journey-art{min-height:390px;border-radius:24px;background:var(--blue);display:grid;place-items:center;position:relative;overflow:hidden}
+    .orbit{width:220px;height:220px;border:1px solid rgba(32,35,33,.35);border-radius:50%;display:grid;place-items:center;transform:rotate(-20deg)}
+    .orbit:before,.orbit:after{content:"";position:absolute;border:1px solid rgba(32,35,33,.28);border-radius:50%;width:290px;height:115px;transform:rotate(55deg)}
+    .orbit:after{transform:rotate(-55deg)}
+    .orbit strong{font-size:62px;letter-spacing:-.1em;transform:rotate(20deg)}
+    .journey-copy h2{margin-bottom:25px}
+    .journey-copy p{color:var(--muted);line-height:1.9;font-size:16px}
+    .pill{display:inline-block;margin:12px 7px 0 0;padding:9px 14px;border:1px solid #d7dbd5;border-radius:99px;font-size:12px;color:#4d554e}
+    .note{background:#f0ded7;border-radius:28px;padding:clamp(36px,7vw,78px);display:flex;justify-content:space-between;align-items:end;gap:35px}
+    .note h2{max-width:600px}
+    .note p{max-width:300px;color:#645b57;line-height:1.8;font-size:14px}
+    footer{padding:42px 0 55px;display:flex;justify-content:space-between;gap:20px;color:#7b827c;font-size:12px}
+    footer strong{color:var(--ink)}
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+    @media(max-width:700px){
+      .wrap{width:min(100% - 36px,560px)}header{height:65px}nav{gap:13px;font-size:11px}
+      .hero{min-height:620px;padding:75px 0 85px}.hero:after{width:220px;height:220px;right:-40px;top:18%;opacity:.85}
+      h1{font-size:clamp(60px,17vw,96px);margin:22px 0}.hero-copy{font-size:17px;max-width:330px}
+      section{padding:78px 0}.statement{border-radius:20px}.statement h2{font-size:clamp(36px,10vw,56px)}
+      .section-head{display:block}.section-head p{margin-top:20px}
+      .skills{grid-template-columns:1fr}.skill{min-height:235px;padding:27px}
+      .journey{grid-template-columns:1fr;gap:30px}.journey-art{min-height:290px}.orbit{transform:scale(.8) rotate(-20deg)}
+      .note{display:block;border-radius:20px}.note p{margin-top:25px}
+      footer{padding:30px 0 40px;flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a class="brand" href="#" aria-label="Angela 홈">angela<span style="color:var(--orange)">.</span></a>
+    <nav aria-label="페이지 메뉴"><a href="#about">소개</a><a href="#tools">도구</a><a href="#journey">여정</a></nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <div class="eyebrow">A curious mind, learning by doing</div>
+        <h1>안녕하세요,<br>저는 <span>Angela</span>예요.</h1>
+        <p class="hero-copy">숫자 뒤에 숨은 이야기를 발견하고 싶어요.<br>Python과 SQL로 데이터를 읽는 법을 배우며, 작은 질문을 의미 있는 인사이트로 바꾸는 연습을 하고 있습니다.</p>
+        <div class="scroll-note">천천히 아래로 내려와 보세요</div>
+      </section>
+
+      <section id="about" class="reveal">
+        <div class="statement">
+          <div class="eyebrow">01 — My point of view</div>
+          <h2>데이터는 차가운 숫자가 아니라,<br><em>좋은 질문의 시작</em>이라고 생각해요.</h2>
+          <p>아직 배워가는 단계지만, 데이터를 정리하고 패턴을 살펴보는 과정이 즐겁습니다. 답을 서두르기보다 왜 그런 결과가 나왔는지 한 번 더 질문하는 분석가가 되고 싶어요.</p>
+        </div>
+      </section>
+
+      <section id="tools" class="reveal">
+        <div class="section-head">
+          <div><div class="eyebrow">02 — My toolkit</div><h2>지금 익히는<br>두 가지 언어.</h2></div>
+          <p>기초부터 차근차근. 도구를 아는 데서 멈추지 않고, 실제 데이터에 적용하는 경험을 쌓고 있어요.</p>
+        </div>
+        <div class="skills">
+          <article class="skill"><div class="symbol">Py</div><div><h3>Python</h3><p>데이터를 불러오고 정리하며, 탐색과 시각화의 기초를 익히고 있어요.</p></div></article>
+          <article class="skill"><div class="symbol">SQL</div><div><h3>SQL</h3><p>필요한 데이터를 정확히 찾고, 조건과 집계로 의미를 읽는 연습을 합니다.</p></div></article>
+        </div>
+      </section>
+
+      <section id="journey" class="reveal">
+        <div class="journey">
+          <div class="journey-art" aria-label="성장과 탐색을 상징하는 원형 그래픽"><div class="orbit"><strong>02</strong></div></div>
+          <div class="journey-copy">
+            <div class="eyebrow">03 — The beginning</div>
+            <h2>두 달의 배움,<br>그리고 다음 장.</h2>
+            <p>데이터 분석 부트캠프에서 약 2개월간 공부하고 있는 학생입니다. 아직은 기초를 다지는 중이지만, 매일 조금씩 더 나은 질문을 만들고 문제를 풀어가는 중이에요.</p>
+            <span class="pill">Data Analysis</span><span class="pill">Python</span><span class="pill">SQL</span><span class="pill">Bootcamp Student</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <div class="note">
+          <div><div class="eyebrow">04 — What comes next</div><h2>배움은 진행형.<br>가능성은 열려 있어요.</h2></div>
+          <p>작은 프로젝트부터 하나씩 기록하고, 배운 것을 직접 설명할 수 있는 분석가로 성장하겠습니다. 방문해 주셔서 감사합니다!</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="wrap"><strong>Angela.</strong><span>Learning data, one question at a time · 2026</span></footer>
+  <script>
+    const items = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.14});
+      items.forEach(item => observer.observe(item));
+    } else {
+      items.forEach(item => item.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>
